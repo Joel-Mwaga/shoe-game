@@ -87,9 +87,23 @@ body {
 }
 
 .banner-content {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
-  margin: 0 0 40px 60px;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.banner-content h1,
+.banner-content p {
+  text-align: center;
+}
+
+.banner-buttons {
+  justify-content: center;
 }
 
 .banner-content h1 {
