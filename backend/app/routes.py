@@ -62,11 +62,17 @@ def signup():
     data = request.get_json()
     if User.query.filter_by(username=data['username']).first():
         return jsonify({'error': 'Username already exists'}), 400
-    hashed_pw = generate_password_hash(data['password'])
-    user = User(username=data['username'], email=data['email'], password=hashed_pw)
-    db.session.add(user)
-    db.session.commit()
-    return jsonify({'message': 'User created'}), 201
+    if User.query.filter_by(email=data['email']).first():
+        return jsonify({'error': 'Email already exists'}), 400
+    try:
+        hashed_pw = generate_password_hash(data['password'])
+        user = User(username=data['username'], email=data['email'], password=hashed_pw)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({'message': 'User created'}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': 'Server error: ' + str(e)}), 500
 
 @routes.route('/login', methods=['POST'])
 def login():
