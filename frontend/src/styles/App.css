@@ -29,6 +29,22 @@ body {
   flex: 1;
 }
 
+.navbar-logo h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo .netflix-red,
+.navbar-logo .white {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
 .navbar-links {
   display: flex;
   list-style: none;
@@ -228,6 +244,10 @@ body {
 
 .cart button:hover {
   background: #b0060f;
+}
+
+.white {
+  color: #fff;
 }
 
 /* Responsive */

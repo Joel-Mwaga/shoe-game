@@ -10,5 +10,6 @@ def validate_shoe_data(data):
             return False
     return True
 
+# Example utility function (not required for basic CRUD)
 def format_price(price):
-    return "${:,.2f}".format(price)
+    return "${:.2f}".format(price)

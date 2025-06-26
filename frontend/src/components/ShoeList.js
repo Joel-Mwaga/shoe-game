@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/App.css';
 
-const ShoeList = () => {
+const ShoeList = ({ filter }) => {
   const [shoes, setShoes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,12 +33,15 @@ const ShoeList = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  // After fetching shoes:
+  const displayedShoes = filter ? shoes.filter(filter) : shoes;
+
   return (
     <div className="shoe-list">
-      {shoes.length === 0 ? (
+      {displayedShoes.length === 0 ? (
         <p>No shoes found.</p>
       ) : (
-        shoes.map(shoe => (
+        displayedShoes.map(shoe => (
           <div key={shoe.id} className="shoe-item">
             {shoe.imageUrl && (
               <img src={shoe.imageUrl} alt={shoe.name} />
