@@ -14,6 +14,8 @@ const Navbar = () => (
       <li><Link to="/new">New</Link></li>
       <li><Link to="/popular">Popular</Link></li>
       <li><Link to="/cart">Cart</Link></li>
+      <li><Link to="/login">Login</Link></li>
+      <li><Link to="/signup">Signup</Link></li>
     </ul>
   </nav>
 );

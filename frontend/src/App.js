@@ -5,6 +5,8 @@ import Banner from './components/banner.js';
 import ShoeRows from './components/ShoeRows.js';
 import Cart from './components/Cart';
 import ShoeList from './components/ShoeList.js'; // Import your ShoeList component
+import Login from './components/login.js'; // Import your Login component
+import Signup from './components/signup.js'; // Import your Signup component
 import './styles/App.css';
 
 function Home() {
@@ -31,6 +33,8 @@ function App() {
           <Route path="/new" render={() => <ShoeList filter={filterNew} />} />
           <Route path="/popular" render={() => <ShoeList filter={filterPopular} />} />
           <Route path="/cart" component={Cart} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
         </Switch>
       </div>
     </Router>

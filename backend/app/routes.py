@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
 from .models import Shoe, db
+from werkzeug.security import generate_password_hash, check_password_hash
+from app.models import User
 
 routes = Blueprint('routes', __name__)
 
@@ -54,3 +56,22 @@ def delete_shoe(shoe_id):
     db.session.delete(shoe)
     db.session.commit()
     return jsonify({'message': 'Shoe deleted successfully'}), 204
+
+@routes.route('/signup', methods=['POST'])
+def signup():
+    data = request.get_json()
+    if User.query.filter_by(username=data['username']).first():
+        return jsonify({'error': 'Username already exists'}), 400
+    hashed_pw = generate_password_hash(data['password'])
+    user = User(username=data['username'], email=data['email'], password=hashed_pw)
+    db.session.add(user)
+    db.session.commit()
+    return jsonify({'message': 'User created'}), 201
+
+@routes.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    user = User.query.filter_by(username=data['username']).first()
+    if user and check_password_hash(user.password, data['password']):
+        return jsonify({'message': 'Login successful', 'user': user.username}), 200
+    return jsonify({'error': 'Invalid credentials'}), 401
