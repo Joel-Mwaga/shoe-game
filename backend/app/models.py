@@ -26,7 +26,7 @@ class Shoe(db.Model):
     image_url = db.Column(db.String(255))
     is_new = db.Column(db.Boolean, default=False)
     is_popular = db.Column(db.Boolean, default=False)
-    user_shoes = db.relationship('UserShoe', backref='shoe', lazy=True)
+    user_shoes = db.relationship('UserShoe', back_populates='shoe')
 
     def to_dict(self):
         return {
