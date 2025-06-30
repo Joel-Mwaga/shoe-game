@@ -19,31 +19,34 @@ const Cart = () => {
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 
+  if (cartItems.length === 0) {
+    return (
+      <div className="cart-page">
+        <h2>Your Cart is Empty</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="cart-page">
-      <div className="cart-center-box">
-        <button className="cart-close-btn" onClick={() => navigate('/')}>✖</button>
-        <h2>Your Cart</h2>
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <>
-            <ul className="cart-items">
-              {cartItems.map(item => (
-                <li key={item.id}>
-                  <span>{item.name}</span>
-                  <span>${item.price}</span>
-                  <button onClick={() => removeFromCart(item)}>Remove</button>
-                </li>
-              ))}
-            </ul>
-            <div className="cart-total">
-              <h3>Total: ${totalPrice.toFixed(2)}</h3>
-              <button className="checkout-btn">Checkout</button>
+      <h2>Your Cart</h2>
+      <ul className="cart-list">
+        {cartItems.map(item => (
+          <li key={item.id} className="cart-item">
+            <img src={item.image_url} alt={item.name} className="cart-image" />
+            <div className="cart-info">
+              <h4>{item.name}</h4>
+              <p>{item.brand}</p>
+              <p>${item.price}</p>
             </div>
-          </>
-        )}
-      </div>
+            <button onClick={() => removeFromCart(item)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+      <h3>Total: ${totalPrice.toFixed(2)}</h3>
+      <button className="banner-btn" onClick={() => navigate('/checkout')}>
+        Proceed to Checkout
+      </button>
     </div>
   );
 };

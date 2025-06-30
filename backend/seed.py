@@ -8,30 +8,46 @@ with app.app_context():
     db.create_all()
     shoes = [
         Shoe(
-            name="Air Max",
+            name="Air Jordan 1",
             brand="Nike",
             price=120,
-            image_url="../frontend/src/images/air-max.jpg",
+            image_url="https://www.shoegame.co.ke/uploadshoes/as3243234243234267.png",
             is_new=True,
             is_popular=True
         ),
         Shoe(
-            name="Superstar",
+            name="Adidas Samba OG",
             brand="Adidas",
             price=90,
-            image_url="https://assets.adidas.com/images/w_600,f_auto,q_auto/6e8e6e8e6e8e6e8e6e8e6e8e6e8e6e8e_9366/Superstar_Shoes_White_EG4958_01_standard.jpg",
+            image_url="https://www.shoegame.co.ke/uploadshoes/samba3746746578654875.png",
             is_new=False,
             is_popular=True
         ),
         Shoe(
-            name="Classic",
+            name="Baseball shoes",
             brand="Reebok",
             price=80,
-            image_url="https://assets.reebok.com/images/w_600,f_auto,q_auto/6e8e6e8e6e8e6e8e6e8e6e8e6e8e6e8e_9366/Classic_Leather_Shoes_White_49799_01_standard.jpg",
+            image_url="https://m.media-amazon.com/images/I/71ZIhiNlejL._AC_UL320_.jpg",
             is_new=True,
             is_popular=False
+        ),
+        Shoe(
+            name="All star High tops",
+            brand="Converse",
+            price=75,
+            image_url="https://m.media-amazon.com/images/I/71B0udp-6LL._AC_UL320_.jpg",
+            is_new=True,
+            is_popular=True
+        ),
+        Shoe(
+            name="Puma RS-X",
+            brand="Puma",
+            price=100,
+            image_url="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/373108/01/sv01/fnd/PNA/fmt/png",
+            is_new=False,
+            is_popular=True
         ),
     ]
     db.session.bulk_save_objects(shoes)
     db.session.commit()
-    print("Database seeded!")
+    print("✅ Database seeded with real shoes!")
