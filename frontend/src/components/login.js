@@ -1,31 +1,39 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import '../styles/auth.css';
 
-export default function Login() {
-  const [form, setForm] = useState({ username: '', password: '' });
-  const [msg, setMsg] = useState('');
+function Login({ onLogin }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async e => {
+  function handleSubmit(e) {
     e.preventDefault();
-    setMsg('');
-    try {
-      const res = await axios.post('/login', form);
-      setMsg('Login successful! Welcome, ' + res.data.user);
-      // Optionally, save user info/token here
-    } catch (err) {
-      setMsg('Login failed: ' + (err.response?.data?.error || 'Server error'));
-    }
-  };
+    // Add actual login logic here
+    onLogin({ email, password });
+  }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "40px auto", display: "flex", flexDirection: "column", gap: 12 }}>
-      <h2>Login</h2>
-      <input name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
-      <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
-      <button type="submit">Login</button>
-      <div>{msg}</div>
-    </form>
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Sign In</h2>
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+        <p>New here? <a href="/signup">Sign up now</a></p>
+      </form>
+    </div>
   );
 }
+
+export default Login;

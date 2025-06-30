@@ -11,7 +11,7 @@ with app.app_context():
             name="Air Max",
             brand="Nike",
             price=120,
-            image_url="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/1e8e6b6e-6e8e-4e7c-8e7e-6e8e6e8e6e8e/air-max-90-shoe-KkLcGR.png",
+            image_url="../frontend/src/images/air-max.jpg",
             is_new=True,
             is_popular=True
         ),

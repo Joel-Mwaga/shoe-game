@@ -1,32 +1,39 @@
-// frontend/src/components/Signup.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import '../styles/auth.css';
 
-export default function Signup() {
-  const [form, setForm] = useState({ username: '', email: '', password: '' });
-  const [msg, setMsg] = useState('');
+function Signup({ onSignup }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async e => {
+  function handleSubmit(e) {
     e.preventDefault();
-    setMsg('');
-    try {
-      await axios.post('/signup', form);
-      setMsg('Signup successful! You can now log in.');
-    } catch (err) {
-      setMsg('Signup failed: ' + (err.response?.data?.error || 'Server error'));
-    }
-  };
+    // Add actual signup logic here
+    onSignup({ email, password });
+  }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: "40px auto", display: "flex", flexDirection: "column", gap: 12 }}>
-      <h2>Sign Up</h2>
-      <input name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
-      <input name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
-      <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
-      <button type="submit">Sign Up</button>
-      <div>{msg}</div>
-    </form>
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Create Account</button>
+        <p>Already have an account? <a href="/login">Login</a></p>
+      </form>
+    </div>
   );
 }
+
+export default Signup;

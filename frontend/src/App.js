@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar.js';
-import Banner from './components/banner.js';
-import ShoeRows from './components/ShoeRows.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Banner from './components/Banner';
+import ShoeRows from './components/ShoeRows';
 import Cart from './components/Cart';
-import ShoeList from './components/ShoeList.js'; // Import your ShoeList component
-import Login from './components/login.js'; // Import your Login component
-import Signup from './components/signup.js'; // Import your Signup component
+import ShoeList from './components/ShoeList';
+import Login from './components/login';
+import Signup from './components/signup';
 import './styles/App.css';
 
 function Home() {
@@ -18,24 +18,22 @@ function Home() {
   );
 }
 
-// Example filter functions (customize as needed)
-const filterNew = shoe => shoe.isNew; // or whatever property marks a shoe as new
-const filterPopular = shoe => shoe.isPopular; // or whatever property marks a shoe as popular
+const filterNew = (shoe) => shoe.isNew;
+const filterPopular = (shoe) => shoe.isPopular;
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Navbar />
-        <Cart />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/new" render={() => <ShoeList filter={filterNew} />} />
-          <Route path="/popular" render={() => <ShoeList filter={filterPopular} />} />
-          <Route path="/cart" component={Cart} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<ShoeList filter={filterNew} />} />
+          <Route path="/popular" element={<ShoeList filter={filterPopular} />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
       </div>
     </Router>
   );

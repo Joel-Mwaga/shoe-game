@@ -15,7 +15,7 @@ body {
 
 .navbar {
   backdrop-filter: blur(6px);
-  background: transparent; /* fully transparent so banner shows through */
+  background: transparent;
   display: flex;
   align-items: center;
   height: 64px;
@@ -27,10 +27,6 @@ body {
   z-index: 1000;
 }
 
-.navbar-logo {
-  flex: 1;
-}
-
 .navbar-logo h1 {
   font-size: 2rem;
   font-weight: bold;
@@ -38,13 +34,6 @@ body {
   margin: 0;
   display: flex;
   align-items: center;
-}
-
-.navbar-logo .netflix-red,
-.navbar-logo .white {
-  font-size: inherit;
-  font-weight: inherit;
-  letter-spacing: inherit;
 }
 
 .navbar-links {
@@ -76,76 +65,57 @@ body {
 
 .banner {
   width: 100vw;
-  height: 400px;
+  height: 500px;
   background: url('../images/shoe-background.jpg') center center/cover no-repeat;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  margin-top: 0; /* so it starts at the very top */
-  z-index: 0;
 }
 
 .banner::after {
   content: "";
   position: absolute;
   left: 0; right: 0; top: 0; bottom: 0;
-  background: linear-gradient(90deg, rgba(20,20,20,0.95) 40%, rgba(229,9,20,0.3) 100%);
+  background: linear-gradient(to top, rgba(20, 20, 20, 0.8), transparent);
   z-index: 1;
 }
 
 .banner-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   z-index: 2;
-  margin: 0;
   text-align: center;
-  width: 100%;
-}
-
-.banner-content h1,
-.banner-content p {
-  text-align: center;
-}
-
-.banner-buttons {
-  justify-content: center;
+  max-width: 800px;
 }
 
 .banner-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.banner-content p {
-  font-size: 1.3rem;
+  font-size: 4rem;
   margin-bottom: 20px;
   color: #fff;
 }
 
+.banner-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+
 .banner-buttons {
   display: flex;
-  gap: 16px;
+  justify-content: center;
+  gap: 20px;
 }
 
 .banner-btn {
   background: #e50914;
   color: #fff;
   border: none;
-  padding: 12px 28px;
-  border-radius: 5px;
-  font-size: 1rem;
+  padding: 14px 30px;
+  font-size: 1.1rem;
   font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px;
-  transition: background 0.2s;
-}
-
-.banner-btn-secondary {
-  background: rgba(109,109,110,0.7);
+  transition: background 0.3s ease;
 }
 
 .banner-btn:hover {
@@ -153,172 +123,241 @@ body {
 }
 
 .shoe-row {
-  margin: 40px 0 0 0;
-  padding-left: 60px;
+  margin: 60px 40px;
 }
 
 .shoe-row h2 {
-  margin-bottom: 12px;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  margin-bottom: 20px;
   color: #fff;
 }
 
 .shoe-row-cards {
-  display: flex;
-  overflow-x: auto;
-  padding-bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
 }
 
 .shoe-card {
   background: #222;
-  border-radius: 10px;
-  margin-right: 18px;
-  width: 200px;
-  min-width: 200px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 18px 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  padding: 20px;
 }
 
 .shoe-card:hover {
-  transform: scale(1.07);
-  box-shadow: 0 8px 32px rgba(229,9,20,0.3);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 24px rgba(229, 9, 20, 0.4);
 }
 
 .shoe-card img {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  height: 160px;
   object-fit: contain;
-  margin-bottom: 10px;
-  border-radius: 8px;
+  margin-bottom: 15px;
   background: #fff;
+  border-radius: 8px;
 }
 
 .shoe-card-info h3 {
-  font-size: 1.1rem;
-  margin: 0 0 6px 0;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #fff;
 }
 
 .shoe-card-info p {
-  margin: 0 0 4px 0;
   font-size: 1rem;
+  color: #ccc;
 }
 
 .shoe-card-info button {
   background: #e50914;
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  margin-top: 8px;
-  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 4px;
   font-weight: bold;
-  transition: background 0.2s;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background 0.3s;
 }
 
 .shoe-card-info button:hover {
   background: #b0060f;
 }
 
-.cart {
+/* Cart Modal Styling */
+.cart-overlay {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(20,20,20,0.98);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.cart-modal {
+  background: #1e1e1e;
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+  position: relative;
+  animation: popup 0.4s ease-in-out;
+}
+
+.cart-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
   color: #fff;
-  padding: 18px;
-  border-radius: 8px;
-  min-width: 220px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  z-index: 2000;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
-.cart h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
+.cart-close-btn:hover {
+  color: #e50914;
 }
 
-.cart ul {
+.cart-modal h2 {
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cart-items {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.cart li {
+.cart-items li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  background: #2a2a2a;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
 }
 
-.cart button {
+.cart-items li span {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.cart-items li button {
   background: #e50914;
   color: #fff;
   border: none;
-  border-radius: 3px;
-  padding: 3px 8px;
+  padding: 6px 12px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
-.cart button:hover {
+.cart-items li button:hover {
   background: #b0060f;
 }
 
-.white {
+.cart-total {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.cart-total h3 {
+  font-size: 1.3rem;
   color: #fff;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .banner-content {
-    margin-left: 20px;
+.checkout-btn {
+  width: 100%;
+  margin-top: 20px;
+  background: #e50914;
+  color: #fff;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #b0060f;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
   }
-  .shoe-row {
-    padding-left: 20px;
-  }
-  .navbar-links {
-    flex-direction: column;
-    align-items: flex-end;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  .navbar-links li {
-    margin: 6px 0;
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 10px 0;
-  }
-  .navbar-links {
-    flex-direction: column;
-    align-items: flex-end;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  .navbar-links li {
-    margin: 6px 0;
-  }
-  .banner {
-    height: 220px;
-  }
-  .banner-content h1 {
-    font-size: 1.5rem;
-  }
-  .shoe-card {
-    width: 140px;
-    min-width: 140px;
-    padding: 10px 4px;
-  }
-  .shoe-card img {
-    width: 70px;
-    height: 70px;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.cart-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  min-height: 80vh;
+}
+
+.cart-center-box {
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 12px;
+  width: 420px;
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+  position: relative;
+}
+
+.cart-center-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cart-center-box p {
+  text-align: center;
+  color: #ccc;
+}
+
+.cart-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.cart-close-btn:hover {
+  color: #e50914;
 }

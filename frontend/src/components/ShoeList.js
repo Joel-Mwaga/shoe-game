@@ -41,19 +41,23 @@ const ShoeList = ({ filter }) => {
       {displayedShoes.length === 0 ? (
         <p>No shoes found.</p>
       ) : (
-        displayedShoes.map(shoe => (
-          <div key={shoe.id} className="shoe-item">
-            {shoe.imageUrl && (
-              <img src={shoe.imageUrl} alt={shoe.name} />
-            )}
-            <h3>{shoe.name}</h3>
-            <p>{shoe.brand}</p>
-            <p>${shoe.price}</p>
-            <button className="add-to-cart-btn" onClick={() => addToCart(shoe)}>
-              Add to Cart
-            </button>
-          </div>
-        ))
+        <div className="shoe-row-cards">
+          {displayedShoes.map(shoe => (
+            <div className="shoe-card" key={shoe.id}>
+              {shoe.imageUrl && (
+                <img src={shoe.imageUrl} alt={shoe.name} />
+              )}
+              <div className="shoe-card-info">
+                <h3>{shoe.name}</h3>
+                <p>{shoe.brand}</p>
+                <p>${shoe.price}</p>
+                <button className="add-to-cart-btn" onClick={() => addToCart(shoe)}>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
